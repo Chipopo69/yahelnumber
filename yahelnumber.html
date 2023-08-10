@@ -1,0 +1,103 @@
+﻿html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF416C;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #FF416C;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background-color: #FF416C;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello beautiful</h1>
+
+    <form id="questionForm">
+        <label for="name">What is your name?</label>
+        <input type="text" id="name">
+
+        <label for="lastName">What is your last name?</label>
+        <input type="text" id="lastName" disabled>
+
+        <label for="phone">Will you give me your phone number?</label>
+        <select id="phone" disabled>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <input type="submit" id="submitBtn" value="Submit" disabled>
+    </form>
+
+    <script>const nameInput = document.getElementById('name');
+    const lastNameInput = document.getElementById('lastName');
+    const phoneInput = document.getElementById('phone');
+    const submitBtn = document.getElementById('submitBtn');
+
+    nameInput.addEventListener('keyup', function() {
+      if (nameInput.value.toLowerCase() === 'yahel') {
+        lastNameInput.disabled = false;
+        lastNameInput.focus();
+      } else {
+        lastNameInput.disabled = true;
+        phoneInput.disabled = true;
+        submitBtn.disabled = true;
+      }
+    });
+
+    lastNameInput.addEventListener('keyup', function() {
+      if (lastNameInput.value.toLowerCase() === 'elkayam') {
+        phoneInput.disabled = false;
+        phoneInput.focus();
+      } else {
+        phoneInput.disabled = true;
+        submitBtn.disabled = true;
+      }
+    });
+
+    phoneInput.addEventListener('change', function() {
+      submitBtn.disabled = false;
+    });
+
+    submitBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Gather the user's inputs
+      const name = nameInput.value;
+      const lastName = lastNameInput.value;
+      const phone = phoneInput.value;
+
+      // Do something with the gathered data
+      console.log('Name:', name);
+      console.log('Last Name:', lastName);
+      console.log('Phone Number:', phone);
+    });</script>
+</body>
+</html>
